@@ -1,9 +1,12 @@
-import {FormEvent, useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import ShopPage from './pages/ShopPage';
+import {CartProvider} from './context/CartProvider';
+import {ProductsProvider} from './context/ProductsProvider';
 
 function App() {
     const [authenticated, setAuthenticated] = useState<boolean>(false);
@@ -28,6 +31,12 @@ function App() {
             <Route path='/'>
                 <Route element={<MainLayout authenticated={authenticated} setAuthenticated={setAuthenticated}/>}>
                     <Route index element={!authenticated ? <Navigate replace to='/login'/> : <HomePage/>}/>
+                    <Route
+                        path='shop'
+                        element={!authenticated
+                            ? <Navigate replace to='/login'/>
+                            : <ProductsProvider><CartProvider><ShopPage/></CartProvider></ProductsProvider>}
+                    />
                 </Route>
                 <Route element={<AuthLayout/>}>
                     <Route path='login' element={authenticated ? <Navigate replace to='/'/> :

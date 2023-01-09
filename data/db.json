@@ -1,0 +1,24 @@
+{
+  "shop": {
+    "products": [
+      {
+        "sku": "item0001",
+        "name": "Watch",
+        "description": "A watch is a portable timepiece intended to be carried or worn by a person. It is designed to keep a consistent movement despite the motions caused by the person's activities.",
+        "price": 99.99
+      },
+      {
+        "sku": "item0002",
+        "name": "iPhone 6",
+        "description": "The iPhone is a smartphone made by Apple that combines a computer, iPod, digital camera and cellular phone into one device with a touchscreen interface.",
+        "price": 499.99
+      },
+      {
+        "sku": "item0003",
+        "name": "MacBook",
+        "description": "The MacBook is a brand of Mac notebook computers designed and marketed by Apple Inc. that use Apple's macOS operating system since 2006.",
+        "price": 999.99
+      }
+    ]
+  }
+}
