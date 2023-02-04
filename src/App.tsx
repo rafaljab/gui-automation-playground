@@ -4,6 +4,7 @@ import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import TodosPage from './pages/TodosPage';
 import ShopPage from './pages/ShopPage';
 import {CartProvider} from './context/CartProvider';
 import {ProductsProvider} from './context/ProductsProvider';
@@ -31,6 +32,7 @@ function App() {
             <Route path='/'>
                 <Route element={<MainLayout authenticated={authenticated} setAuthenticated={setAuthenticated}/>}>
                     <Route index element={!authenticated ? <Navigate replace to='/login'/> : <HomePage/>}/>
+                    <Route path='todos' element={!authenticated ? <Navigate replace to='/login'/> : <TodosPage/>}/>
                     <Route
                         path='shop'
                         element={!authenticated
