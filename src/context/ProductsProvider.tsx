@@ -1,4 +1,4 @@
-import {createContext, ReactElement, useEffect, useState} from 'react';
+import {createContext, ReactElement, useEffect, useState, useRef} from 'react';
 
 export type ProductType = {
     sku: string,
@@ -20,6 +20,8 @@ type ChildrenType = { children?: ReactElement | ReactElement[] }
 export const ProductsProvider = ({children}: ChildrenType): ReactElement => {
     const [products, setProducts] = useState<ProductType[]>(initState)
 
+    const effectRun = useRef(true)
+
     useEffect(() => {
         const fetchProducts = async (): Promise<ProductType[]> => {
             return await fetch('http://localhost:3500/shop')
@@ -32,7 +34,13 @@ export const ProductsProvider = ({children}: ChildrenType): ReactElement => {
                 })
         }
 
-        fetchProducts().then(products => setProducts(products))
+        if (effectRun.current) {
+            fetchProducts().then(products => setProducts(products))
+        }
+
+        return () => {
+            effectRun.current = false
+        }
     }, [])
 
     return (
