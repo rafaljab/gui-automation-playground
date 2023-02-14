@@ -13,12 +13,14 @@ git clone https://github.com/rafaljab/react-automation-playground.git
 cd react-automation-playground
 npm install
 ```
-You also need to install the "json-server" package:
+You also need to install globally the "json-server" package:
 ```bash
 npm install -g json-server
 ```
 
 ## Running
+You can start the application manually or by using a ready-made CMD script.
+### Manually
 Start a JSON server on port 3500:
 ```bash
 npx json-server -w data/db.json -p 3500
@@ -29,6 +31,9 @@ In another terminal window run the following command to build the React applicat
 npm start
 ```
 Your web browser should automatically open to default: [http://localhost:3000/](http://localhost:3000/).
+
+### Using CMD script (Windows)
+Just open the `start-app.cmd` file. It will run all the commands for you.
 
 ## Features
 * Login mock with a warning alert
