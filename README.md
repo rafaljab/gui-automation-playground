@@ -36,5 +36,6 @@ Your web browser should automatically open to default: [http://localhost:3000/](
 Just open the `start-app.cmd` file. It will run all the commands for you.
 
 ## Features
-* Login mock with a warning alert
-* Shop with products and cart page (inspired by [Dave Gray's Typescript Course](https://github.com/gitdagray/typescript-course))
+* Login mock with a warning alert - [Screenshot](attachments/login.png)
+* Shop with products and cart page (inspired by [Dave Gray's Typescript Course](https://github.com/gitdagray/typescript-course)) - [Screenshot1](attachments/shop1.png) | [Screenshot2](attachments/shop2.png)
+* TODOs list - [Screenshot](attachments/todos.png)
