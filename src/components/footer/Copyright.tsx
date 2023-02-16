@@ -6,7 +6,7 @@ const Copyright = ({sx}: { sx: object }) => {
         <Typography variant='body2' color='text.secondary' align='center' sx={sx}>
             {'Copyright © '}
             <Link color='inherit' component={ReactLink} to='/'>
-                React Automation Playground
+                GUI Automation Playground
             </Link>
             {` ${new Date().getFullYear()}.`}
         </Typography>
