@@ -20,8 +20,18 @@ const ShopHeader = ({viewCart, setViewCart}: PropsType) => {
                 justifyContent="flex-end"
                 divider={<Divider orientation="vertical" flexItem/>}
             >
-                <Typography variant="body1">Total Items: {totalItems}</Typography>
-                <Typography variant="body1">Total Price: {totalPrice}</Typography>
+                <Typography
+                  variant="body1"
+                  data-testid="shop-header-total-items"
+                >
+                  Total Items: {totalItems}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  data-testid="shop-header-total-price"
+                >
+                  Total Price: {totalPrice}
+                </Typography>
                 <ShopNav viewCart={viewCart} setViewCart={setViewCart}/>
             </Stack>
             <Divider sx={{paddingTop: "10px", paddingBottom: "10px"}} role="presentation">

@@ -38,7 +38,9 @@ const Product = ({product, dispatch, REDUCER_ACTIONS, inCart}: PropsType): React
         </IconButton>
 
     return (
-        <Card sx={{width: 340}}>
+        <Card sx={{width: 340}}
+              data-testid="product-card"
+        >
             <CardMedia
                 sx={{height: 220}}
                 image={img}
