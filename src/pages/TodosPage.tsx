@@ -7,8 +7,7 @@ const TodosPage = () => {
     const [todos, setTodos] = useState<Todo[]>(
       (localStorage.getItem('todos') == null || localStorage.getItem('todos') === '')
         ? []
-        : JSON.parse(localStorage.getItem('todos') as string
-        )
+        : JSON.parse(localStorage.getItem('todos') as string)
     )
     const [newTodo, setNewTodo] = useState<string>("")
 
