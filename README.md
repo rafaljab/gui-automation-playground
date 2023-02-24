@@ -38,4 +38,4 @@ Just open the `start-app.cmd` file. It will run all the commands for you.
 ## Features
 * Login mock with a warning alert - [Screenshot](attachments/login.png)
 * Shop with products and cart page (inspired by [Dave Gray's Typescript Course](https://github.com/gitdagray/typescript-course)) - [Screenshot1](attachments/shop1.png) | [Screenshot2](attachments/shop2.png)
-* TODOs list - [Screenshot](attachments/todos.png)
+* TODOs list with saving to local storage - [Screenshot](attachments/todos.png)

@@ -1,11 +1,20 @@
 import {Box, Toolbar, Typography, TextField, Button, Stack} from '@mui/material';
-import React, {useState, ChangeEvent, FormEvent} from 'react';
+import React, {useState, useEffect, ChangeEvent, FormEvent} from 'react';
 import {TodoList} from '../components/features/todos/TodoList';
 import uuid from 'react-uuid';
 
 const TodosPage = () => {
-    const [todos, setTodos] = useState<Todo[]>([])
+    const [todos, setTodos] = useState<Todo[]>(
+      (localStorage.getItem('todos') == null || localStorage.getItem('todos') === '')
+        ? []
+        : JSON.parse(localStorage.getItem('todos') as string
+        )
+    )
     const [newTodo, setNewTodo] = useState<string>("")
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }, [todos])
 
     const toggleTodo: ToggleTodo = selectedTodo => {
         const updatedTodos = todos.map(todo => {
