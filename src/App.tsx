@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useState, useEffect} from 'react';
 import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import AuthLayout from './layouts/AuthLayout';
@@ -10,9 +10,17 @@ import {CartProvider} from './context/CartProvider';
 import {ProductsProvider} from './context/ProductsProvider';
 
 function App() {
-    const [authenticated, setAuthenticated] = useState<boolean>(false);
+    const [authenticated, setAuthenticated] = useState<boolean>(
+      (localStorage.getItem('authenticated') == null || localStorage.getItem('authenticated') === '')
+        ? false
+        : JSON.parse(localStorage.getItem('authenticated') as string)
+    );
     const [loginAlertOpened, setLoginAlertOpened] = useState<boolean>(false);
     const navigate = useNavigate();
+
+     useEffect(() => {
+        localStorage.setItem('authenticated', JSON.stringify(authenticated))
+    }, [authenticated])
 
     const handleLoginSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
