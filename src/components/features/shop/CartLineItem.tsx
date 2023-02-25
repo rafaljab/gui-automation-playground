@@ -24,8 +24,6 @@ type PropsType = {
 }
 
 const CartLineItem = ({item, dispatch, REDUCER_ACTIONS}: PropsType) => {
-    const img: string = `/images/${item.sku}.jpg` // for dev mode
-
     const lineTotal: number = (item.qty * item.price)
 
     const highestQty: number = 20 > item.qty ? 20 : item.qty
@@ -67,8 +65,8 @@ const CartLineItem = ({item, dispatch, REDUCER_ACTIONS}: PropsType) => {
                     <ListItemAvatar>
                         <Badge badgeContent={item.qty} color="primary">
                             <Avatar
-                                src={img}
-                                alt={item.name}
+                                src={item.thumbnail}
+                                alt={item.title}
                                 sx={{width: 56, height: 56}}
                                 variant="rounded"
                             />
@@ -77,7 +75,7 @@ const CartLineItem = ({item, dispatch, REDUCER_ACTIONS}: PropsType) => {
                 </Grid>
                 <Grid item width={150}>
                     <ListItemText
-                        primary={item.name}
+                        primary={item.title}
                         secondary={
                             <>
                                 {new Intl.NumberFormat('en-US', {

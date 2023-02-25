@@ -13,8 +13,6 @@ type PropsType = {
 }
 
 const Product = ({product, dispatch, REDUCER_ACTIONS, inCart}: PropsType): ReactElement => {
-    const img: string = `/images/${product.sku}.jpg` // for dev mode
-
     const onAddToCart = () => dispatch({type: REDUCER_ACTIONS.ADD, payload: {...product, qty: 1}})
 
     const buttonAddToCart = inCart
@@ -43,12 +41,12 @@ const Product = ({product, dispatch, REDUCER_ACTIONS, inCart}: PropsType): React
         >
             <CardMedia
                 sx={{height: 220}}
-                image={img}
-                title={product.name}
+                image={product.thumbnail}
+                title={product.title}
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {product.name}
+                <Typography gutterBottom variant="h6" component="div" data-testid="product-title">
+                    {product.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {product.description}

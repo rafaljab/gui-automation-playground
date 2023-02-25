@@ -1,10 +1,11 @@
 import {createContext, ReactElement, useEffect, useState, useRef} from 'react';
 
 export type ProductType = {
-    sku: string,
-    name: string,
+    id: number,
+    title: string,
     description: string,
-    price: number
+    price: number,
+    thumbnail: string
 }
 
 const initState: ProductType[] = []
@@ -24,7 +25,7 @@ export const ProductsProvider = ({children}: ChildrenType): ReactElement => {
 
     useEffect(() => {
         const fetchProducts = async (): Promise<ProductType[]> => {
-            return await fetch('http://localhost:3500/shop')
+            return await fetch('https://dummyjson.com/products')
                 .then(res => res.json())
                 .then(res => {
                     return res.products

@@ -22,7 +22,7 @@ function Cart() {
                 {cart.map(item => {
                     return (
                         <CartLineItem
-                            key={item.sku}
+                            key={item.id}
                             item={item}
                             dispatch={dispatch}
                             REDUCER_ACTIONS={REDUCER_ACTIONS}

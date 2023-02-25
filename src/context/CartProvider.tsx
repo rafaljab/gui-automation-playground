@@ -1,10 +1,11 @@
 import {createContext, ReactElement, useMemo, useReducer} from 'react';
 
 export type CartItemType = {
-    sku: string,
-    name: string,
+    id: number,
+    title: string,
     price: number,
-    qty: number
+    qty: number,
+    thumbnail: string
 }
 
 type CartStateType = { cart: CartItemType[] }
@@ -31,31 +32,31 @@ const reducer = (state: CartStateType, action: ReducerAction): CartStateType => 
             if (!action.payload) {
                 throw new Error('action.payload missing in ADD action')
             }
-            const {sku, name, price} = action.payload
-            const filteredCart: CartItemType[] = state.cart.filter(item => item.sku !== sku)
-            const itemExists: CartItemType | undefined = state.cart.find(item => item.sku === sku)
+            const {id, title, price, thumbnail} = action.payload
+            const filteredCart: CartItemType[] = state.cart.filter(item => item.id !== id)
+            const itemExists: CartItemType | undefined = state.cart.find(item => item.id === id)
             const qty: number = itemExists ? itemExists.qty + 1 : 1
-            return {...state, cart: [...filteredCart, {sku, name, price, qty}]}
+            return {...state, cart: [...filteredCart, {id, title, price, qty, thumbnail}]}
         }
         case REDUCER_ACTION_TYPE.REMOVE: {
             if (!action.payload) {
                 throw new Error('action.payload missing in REMOVE action')
             }
-            const {sku} = action.payload
-            const filteredCart: CartItemType[] = state.cart.filter(item => item.sku !== sku)
+            const {id} = action.payload
+            const filteredCart: CartItemType[] = state.cart.filter(item => item.id !== id)
             return {...state, cart: [...filteredCart]}
         }
         case REDUCER_ACTION_TYPE.QUANTITY: {
             if (!action.payload) {
                 throw new Error('action.payload missing in QUANTITY action')
             }
-            const {sku, qty} = action.payload
-            const itemExists: CartItemType | undefined = state.cart.find(item => item.sku === sku)
+            const {id, qty} = action.payload
+            const itemExists: CartItemType | undefined = state.cart.find(item => item.id === id)
             if (!itemExists) {
                 throw new Error('Item must exist in order to update quantity')
             }
             const updatedItem: CartItemType = {...itemExists, qty}
-            const filteredCart: CartItemType[] = state.cart.filter(item => item.sku !== sku)
+            const filteredCart: CartItemType[] = state.cart.filter(item => item.id !== id)
             return {...state, cart: [...filteredCart, updatedItem]}
         }
         case REDUCER_ACTION_TYPE.SUBMIT: {
@@ -86,9 +87,7 @@ const useCartContext = (initCartState: CartStateType) => {
     )
 
     const cart = state.cart.sort((a, b) => {
-        const itemA = Number(a.sku.slice(-4))
-        const itemB = Number(b.sku.slice(-4))
-        return itemA - itemB
+        return a.id - b.id
     })
 
     return {dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart}
