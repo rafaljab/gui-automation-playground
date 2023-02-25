@@ -46,18 +46,21 @@ const TodosPage = () => {
     }
 
     return (
-        <Box component='main' sx={{flexGrow: 1, p: 3}}>
-            <Toolbar/>
-            <Typography variant='h3' gutterBottom>TODOs</Typography>
-            <form>
-                <Stack spacing={2} direction="row">
-                    <TextField value={newTodo} onChange={handleChange} variant="outlined"/>
-                    <Button onClick={handleSubmit} variant="contained">Add Task</Button>
-                    <Button onClick={handleClearTodos} variant="outlined">Clear Completed Tasks</Button>
-                </Stack>
-            </form>
-            <TodoList todos={todos} toggleTodo={toggleTodo}/>
-        </Box>
+      <Box component='main' sx={{flexGrow: 1, p: 3}}>
+          <Toolbar/>
+          <Typography variant='h3' gutterBottom>TODOs</Typography>
+          <form>
+              <Stack spacing={2} direction="row">
+                  <TextField value={newTodo} onChange={handleChange} variant="outlined"/>
+                  <Button onClick={handleSubmit} variant="contained">Add Task</Button>
+                  <Button onClick={handleClearTodos} variant="outlined">Clear Completed Tasks</Button>
+              </Stack>
+          </form>
+          {todos.length !== 0
+            ? (<TodoList todos={todos} toggleTodo={toggleTodo}/>)
+            : (<Typography variant='body1'>There are no TODOs!</Typography>)
+          }
+      </Box>
     )
 }
 

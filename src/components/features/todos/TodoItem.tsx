@@ -13,6 +13,7 @@ export const TodoItem = ({todo, toggleTodo}: PropsType) => {
                 <Checkbox checked={todo.complete} onChange={() => toggleTodo(todo)}/>
             }
             label={todo.text}
+            data-testid="todo-item"
         />
     )
 }
