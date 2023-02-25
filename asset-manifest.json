@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/gui-automation-playground/static/js/main.4bd5b94c.js",
+    "main.js": "/gui-automation-playground/static/js/main.dbe0b989.js",
     "index.html": "/gui-automation-playground/index.html",
-    "main.4bd5b94c.js.map": "/gui-automation-playground/static/js/main.4bd5b94c.js.map"
+    "main.dbe0b989.js.map": "/gui-automation-playground/static/js/main.dbe0b989.js.map"
   },
   "entrypoints": [
-    "static/js/main.4bd5b94c.js"
+    "static/js/main.dbe0b989.js"
   ]
 }
