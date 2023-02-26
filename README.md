@@ -4,37 +4,32 @@ That is a simple React application for playing with a test automation framework.
 **Disclaimer:** I built this app to play around with automated tests. I have limited knowledge of React, so keep in mind that this project probably isn't the best example of good coding practices, etc.
 This application is also highly insecure - the simplified authentication feature is made for demo use.
 
+## Live Demo
+**Open the link: [https://rafaljab.github.io/gui-automation-playground/](https://rafaljab.github.io/gui-automation-playground/)**
+
 ## Dependencies
 * [Node.js](https://nodejs.org/) (I use version 18.12.1, but you can probably use a newer version too)
 
-## Set up
+## Set Up
 To download the repository and install other dependencies, run the following commands:
 ```bash
 git clone https://github.com/rafaljab/gui-automation-playground.git
 cd gui-automation-playground
 npm install
 ```
-You also need to install globally the "json-server" package:
-```bash
-npm install -g json-server
-```
 
-## Running
+## Running Locally
 You can start the application manually or by using a ready-made CMD script.
-### Manually
-Start a JSON server on port 3500:
-```bash
-npx json-server -w data/db.json -p 3500
-```
 
-In another terminal window run the following command to build the React application (dev mode):
+### Manually
+Run the following command to build the React application (dev mode):
 ```bash
 npm start
 ```
-Your web browser should automatically open to default: [http://localhost:3000/](http://localhost:3000/).
+Your web browser should automatically open to default: [http://localhost:3000/gui-automation-playground](http://localhost:3000/gui-automation-playground).
 
-### Using CMD script (Windows)
-Just open the `start-app.cmd` file. It will run all the commands for you.
+### Using CMD Script (Windows)
+Just open the `start-app.cmd` file. It will run the command for you.
 
 ## Features
 * Login mock with a warning alert - [Screenshot](attachments/login.png)
