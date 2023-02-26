@@ -1,4 +1,4 @@
 @ECHO OFF
 CD "%~dp0"
-START npm start
+npm start
 EXIT
