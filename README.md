@@ -61,3 +61,7 @@ Your web browser should automatically open to default: [http://localhost:3000/gu
 **B) Using CMD Script (Windows)**
 
 Just open the `start-app.cmd` file. It will run the command for you.
+
+## Tests
+You can find end-to-end automated tests for GUI in a separate repository - [helloPlaywrightPy](https://github.com/rafaljab/helloPlaywrightPy).
+These tests are written with Playwright and Python.
