@@ -1,20 +1,48 @@
-import {AppBar, Button, Toolbar, Typography} from '@mui/material';
-import {Dispatch, SetStateAction} from 'react';
+import {
+  AppBar,
+  Button,
+  IconButton,
+  Toolbar,
+  Typography,
+  Box,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Dispatch, SetStateAction } from "react";
 
 const TopMenu = ({
-                     authenticated,
-                     setAuthenticated
-                 }: { authenticated: boolean, setAuthenticated: Dispatch<SetStateAction<boolean>> }) => {
-    return (
-        <AppBar position='fixed' sx={{zIndex: (theme) => theme.zIndex.drawer + 1}}>
-            <Toolbar>
-                <Typography variant='h6' component='div' sx={{flexGrow: 1}}>
-                    GUI Automation Playground
-                </Typography>
-                <Button onClick={() => setAuthenticated(false)} color='inherit'>Logout</Button>
-            </Toolbar>
-        </AppBar>
-    )
-}
+  authenticated,
+  setAuthenticated,
+  menuOpened,
+  setMenuOpened,
+}: {
+  authenticated: boolean;
+  setAuthenticated: Dispatch<SetStateAction<boolean>>;
+  menuOpened: boolean;
+  setMenuOpened: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const toggleMenuOpened = (): void => setMenuOpened(!menuOpened);
+
+  return (
+    <AppBar
+      position="fixed"
+      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+    >
+      <Toolbar>
+        <IconButton onClick={toggleMenuOpened} color="inherit">
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          GUI Automation Playground
+        </Typography>
+
+        <Box>
+          <Button onClick={() => setAuthenticated(false)} color="inherit">
+            Logout
+          </Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
+  );
+};
 
 export default TopMenu;
