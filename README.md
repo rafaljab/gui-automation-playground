@@ -41,12 +41,6 @@ If you want more freedom, you can fork the repository first instead of cloning i
 2. Unzip the file to the desired location.
 3. Go to the directory with the `package.json` file and install dependencies by running `npm install`.
 
-```bash
-git clone https://github.com/rafaljab/gui-automation-playground.git
-cd gui-automation-playground
-npm install
-```
-
 ### Run App Locally
 You can start the application manually (A) or by using a ready-made CMD script (B).
 
