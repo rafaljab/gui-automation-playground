@@ -25,10 +25,16 @@ const TopMenu = ({
   return (
     <AppBar
       position="fixed"
-      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+      }}
     >
       <Toolbar>
-        <IconButton onClick={toggleMenuOpened} color="inherit">
+        <IconButton
+          onClick={toggleMenuOpened}
+          color="inherit"
+          sx={{ paddingRight: "16px" }}
+        >
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
