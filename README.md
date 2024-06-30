@@ -12,7 +12,9 @@ This application is also highly insecure - the simplified authentication feature
 * Login mock with a warning alert - [Screenshot](attachments/login.png)
     * The authentication state is saved in local storage
 * Shop with products and cart page (inspired by [Dave Gray's Typescript Course](https://github.com/gitdagray/typescript-course)) - [Screenshot1](attachments/shop1.png) | [Screenshot2](attachments/shop2.png)
-    * Shop products are fetched with the [dummyJSON](https://dummyjson.com/) REST API (so you need an internet connection for this to work if you run the app locally).
+    * Shop products are fetched with the [API Automation Playground](https://apiautomationplayground.pythonanywhere.com/api/shop/products/) 
+  REST API (so you need an internet connection for this to work if you run the app locally). 
+  Check out the GitHub repository for this project [here](https://github.com/rafaljab/apiAutomationPlayground).
 * TODOs list with saving in local storage - [Screenshot](attachments/todos.png)
 
 ## Usage

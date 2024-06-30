@@ -93,7 +93,7 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: PropsType) => {
               }}
             >
               <Avatar
-                src={item.thumbnail}
+                src={item.image}
                 alt={item.title}
                 sx={{
                   width: ["95%", "200px"],
