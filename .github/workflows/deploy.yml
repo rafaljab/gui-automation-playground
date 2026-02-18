@@ -38,9 +38,11 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          npm version patch -m "Bump version to %s [skip ci]"
+          npm version patch -m "chore: bump version to %s [skip ci]"
           git push
           git push --tags
+          NEW_TAG=$(git describe --tags --abbrev=0)
+          gh release create "$NEW_TAG" --generate-notes
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
