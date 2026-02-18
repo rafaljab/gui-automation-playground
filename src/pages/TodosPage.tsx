@@ -6,7 +6,7 @@ import {
   Button,
   Grid,
 } from "@mui/material";
-import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { TodoList } from "../components/features/todos/TodoList";
 import uuid from "react-uuid";
 
@@ -71,7 +71,7 @@ const TodosPage = () => {
         component="form"
       >
         <Grid container spacing={1} direction="row">
-          <Grid item xs={12} sm={9} md={9}>
+          <Grid size={{ xs: 12, sm: 9, md: 9 }}>
             <TextField
               value={newTodo}
               onChange={handleChange}
@@ -81,7 +81,7 @@ const TodosPage = () => {
               sx={{ minHeight: "100%" }}
             />
           </Grid>
-          <Grid item xs={12} sm={3} md={3}>
+          <Grid size={{ xs: 12, sm: 3, md: 3 }}>
             <Button
               onClick={handleSubmit}
               variant="contained"
@@ -92,7 +92,7 @@ const TodosPage = () => {
             </Button>
           </Grid>
 
-          <Grid item xs={12} sm={12} md={12}>
+          <Grid size={{ xs: 12, sm: 12, md: 12 }}>
             <Button
               onClick={handleClearTodos}
               variant="outlined"

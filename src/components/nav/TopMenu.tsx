@@ -10,7 +10,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Dispatch, SetStateAction } from "react";
 
 const TopMenu = ({
-  authenticated,
   setAuthenticated,
   menuOpened,
   setMenuOpened,

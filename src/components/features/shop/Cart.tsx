@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useCart from "../../../hooks/useCart";
 import CartLineItem from "./CartLineItem";
 import { Box, Button, Divider, List, Stack, Typography } from "@mui/material";

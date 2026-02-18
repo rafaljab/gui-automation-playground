@@ -80,7 +80,7 @@ const Product = ({
           alignItems="center"
           paddingLeft="10px"
         >
-          <Grid item>
+          <Grid size="auto">
             <Typography variant="body2">
               Price:{" "}
               {new Intl.NumberFormat("en-US", {
@@ -89,7 +89,7 @@ const Product = ({
               }).format(product.price)}
             </Typography>
           </Grid>
-          <Grid item>{buttonAddToCart}</Grid>
+          <Grid size="auto">{buttonAddToCart}</Grid>
         </Grid>
       </CardActions>
     </Card>

@@ -9,7 +9,11 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import {Dispatch, FormEventHandler, SetStateAction} from 'react';
+import {
+    Dispatch,
+    FormEventHandler,
+    SetStateAction
+} from 'react';
 
 const LoginPage = (
     {
@@ -30,13 +34,13 @@ const LoginPage = (
                 alignItems: 'center',
             }}
         >
-            <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-                <LockOutlinedIcon/>
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                <LockOutlinedIcon />
             </Avatar>
             <Typography component='h1' variant='h5' gutterBottom>
                 Log in
             </Typography>
-            <Collapse sx={{width: '100%'}} in={loginAlertOpened}>
+            <Collapse sx={{ width: '100%' }} in={loginAlertOpened}>
                 <Alert
                     severity='warning'
                     action={
@@ -48,15 +52,15 @@ const LoginPage = (
                                 setLoginAlertOpened(false);
                             }}
                         >
-                            <CloseIcon fontSize="inherit"/>
+                            <CloseIcon fontSize="inherit" />
                         </IconButton>
                     }
-                    sx={{mb: 1, mt: 1}}
+                    sx={{ mb: 1, mt: 1 }}
                 >
                     Incorrect credentials!
                 </Alert>
             </Collapse>
-            <Box component='form' onSubmit={handleLoginSubmit} noValidate sx={{mt: 1}}>
+            <Box component='form' onSubmit={handleLoginSubmit} noValidate sx={{ mt: 1 }}>
                 <TextField
                     margin='normal'
                     required
@@ -83,17 +87,17 @@ const LoginPage = (
                     type='submit'
                     fullWidth
                     variant='contained'
-                    sx={{mt: 3, mb: 2}}
+                    sx={{ mt: 3, mb: 2 }}
                 >
                     Log In
                 </Button>
                 <Grid container>
-                    <Grid item xs>
+                    <Grid size="grow">
                         <Link href='#' variant='body2'>
                             Forgot password?
                         </Link>
                     </Grid>
-                    <Grid item>
+                    <Grid size="auto">
                         <Link href='#' variant='body2'>
                             {'Don\'t have an account? Sign Up'}
                         </Link>
