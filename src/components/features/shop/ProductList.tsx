@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import useCart from "../../../hooks/useCart";
 import useProducts from "../../../hooks/useProducts";
 import Product from "./Product";
@@ -9,7 +9,7 @@ const ProductList = () => {
   const { products } = useProducts();
 
   let pageContent: ReactElement | ReactElement[] = (
-    <Grid item xs="auto">
+    <Grid size="auto">
       <Typography variant="body2">Loading...</Typography>
     </Grid>
   );
@@ -19,7 +19,7 @@ const ProductList = () => {
       const inCart: boolean = cart.some((item) => item.id === product.id);
 
       return (
-        <Grid key={product.id} item xs="auto">
+        <Grid key={product.id} size="auto">
           <Product
             key={product.id}
             product={product}

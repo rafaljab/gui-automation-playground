@@ -82,7 +82,7 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: PropsType) => {
         alignItems="start"
         spacing={2}
       >
-        <Grid item xs={"auto"}>
+        <Grid size="auto">
           <ListItemAvatar>
             <Badge
               badgeContent={item.qty}
@@ -107,8 +107,7 @@ const CartLineItem = ({ item, dispatch, REDUCER_ACTIONS }: PropsType) => {
         </Grid>
 
         <Grid
-          item
-          xs={"auto"}
+          size="auto"
           justifyContent="start"
           sx={{ marginTop: 0, paddingTop: 0 }}
         >
