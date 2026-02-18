@@ -1,4 +1,4 @@
 @ECHO OFF
 CD "%~dp0"
-npm start
+npm run dev
 EXIT

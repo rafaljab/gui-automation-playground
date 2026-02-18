@@ -50,9 +50,9 @@ You can start the application manually (A) or by using a ready-made CMD script (
 
 Run the following command to start the React application (dev mode):
 ```bash
-npm start
+npm run dev
 ```
-Your web browser should automatically open to default: [http://localhost:3000/gui-automation-playground](http://localhost:3000/gui-automation-playground).
+Your web browser should automatically open to default: [http://localhost:5173/gui-automation-playground](http://localhost:5173/gui-automation-playground).
 
 **B) Using CMD Script (Windows)**
 
