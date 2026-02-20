@@ -4,17 +4,19 @@ import LeftMenu from "../components/nav/LeftMenu";
 import { Outlet } from "react-router-dom";
 import { Dispatch, SetStateAction } from "react";
 
+type Props = {
+  authenticated: boolean;
+  setAuthenticated: Dispatch<SetStateAction<boolean>>;
+  menuOpened: boolean;
+  setMenuOpened: Dispatch<SetStateAction<boolean>>;
+};
+
 const MainLayout = ({
   authenticated,
   setAuthenticated,
   menuOpened,
   setMenuOpened,
-}: {
-  authenticated: boolean;
-  setAuthenticated: Dispatch<SetStateAction<boolean>>;
-  menuOpened: boolean;
-  setMenuOpened: Dispatch<SetStateAction<boolean>>;
-}) => {
+}: Props) => {
   const drawerWidth: number = 240;
 
   return (

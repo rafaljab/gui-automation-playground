@@ -4,7 +4,7 @@ import CartLineItem from "./CartLineItem";
 import { Box, Button, Divider, List, Stack, Typography } from "@mui/material";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
-function Cart() {
+const Cart = () => {
   const [confirm, setConfirm] = useState<boolean>(false);
   const { dispatch, REDUCER_ACTIONS, totalItems, totalPrice, cart } = useCart();
 

@@ -1,48 +1,48 @@
 import {
     Alert,
     Avatar,
-    Box, Button, Collapse,
-    Grid, Link,
+    Box,
+    Button,
+    Collapse,
+    Grid,
+    Link,
     TextField,
-    Typography
-} from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import {
-    Dispatch,
-    FormEventHandler,
-    SetStateAction
-} from 'react';
+    Typography,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import { Dispatch, FormEventHandler, SetStateAction } from "react";
 
-const LoginPage = (
-    {
-        handleLoginSubmit,
-        loginAlertOpened,
-        setLoginAlertOpened
-    }: {
-        handleLoginSubmit: FormEventHandler<HTMLFormElement>,
-        loginAlertOpened: boolean,
-        setLoginAlertOpened: Dispatch<SetStateAction<boolean>>
-    }) => {
+type Props = {
+    handleLoginSubmit: FormEventHandler<HTMLFormElement>;
+    loginAlertOpened: boolean;
+    setLoginAlertOpened: Dispatch<SetStateAction<boolean>>;
+};
+
+const LoginPage = ({
+    handleLoginSubmit,
+    loginAlertOpened,
+    setLoginAlertOpened,
+}: Props) => {
     return (
         <Box
             sx={{
                 marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
             }}
         >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
                 <LockOutlinedIcon />
             </Avatar>
-            <Typography component='h1' variant='h5' gutterBottom>
+            <Typography component="h1" variant="h5" gutterBottom>
                 Log in
             </Typography>
-            <Collapse sx={{ width: '100%' }} in={loginAlertOpened}>
+            <Collapse sx={{ width: "100%" }} in={loginAlertOpened}>
                 <Alert
-                    severity='warning'
+                    severity="warning"
                     action={
                         <IconButton
                             aria-label="close"
@@ -60,52 +60,52 @@ const LoginPage = (
                     Incorrect credentials!
                 </Alert>
             </Collapse>
-            <Box component='form' onSubmit={handleLoginSubmit} noValidate sx={{ mt: 1 }}>
+            <Box component="form" onSubmit={handleLoginSubmit} noValidate sx={{ mt: 1 }}>
                 <TextField
-                    margin='normal'
+                    margin="normal"
                     required
                     fullWidth
-                    id='email'
-                    label='Email Address'
-                    name='email'
-                    autoComplete='email'
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    autoComplete="email"
                     autoFocus
                 />
                 <TextField
-                    margin='normal'
+                    margin="normal"
                     required
                     fullWidth
-                    name='password'
-                    label='Password'
-                    type='password'
-                    id='password'
-                    autoComplete='current-password'
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
                 />
-                <Typography variant='body2'>Email: admin@example.com</Typography>
-                <Typography variant='body2'>Password: admin123</Typography>
+                <Typography variant="body2">Email: admin@example.com</Typography>
+                <Typography variant="body2">Password: admin123</Typography>
                 <Button
-                    type='submit'
+                    type="submit"
                     fullWidth
-                    variant='contained'
+                    variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                 >
                     Log In
                 </Button>
                 <Grid container>
                     <Grid size="grow">
-                        <Link href='#' variant='body2'>
+                        <Link href="#" variant="body2">
                             Forgot password?
                         </Link>
                     </Grid>
                     <Grid size="auto">
-                        <Link href='#' variant='body2'>
-                            {'Don\'t have an account? Sign Up'}
+                        <Link href="#" variant="body2">
+                            {"Don't have an account? Sign Up"}
                         </Link>
                     </Grid>
                 </Grid>
             </Box>
         </Box>
     );
-}
+};
 
 export default LoginPage;

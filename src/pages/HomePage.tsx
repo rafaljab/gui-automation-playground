@@ -1,10 +1,12 @@
-import {Box, Toolbar, Typography} from '@mui/material';
+import { Box, Toolbar, Typography } from "@mui/material";
 
 const HomePage = () => {
     return (
-        <Box component='main' sx={{flexGrow: 1, p: 3}}>
-            <Toolbar/>
-            <Typography variant='h3' gutterBottom>Home</Typography>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Toolbar />
+            <Typography variant="h3" gutterBottom>
+                Home
+            </Typography>
             <Typography paragraph>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                 tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
@@ -33,7 +35,7 @@ const HomePage = () => {
                 posuere sollicitudin aliquam ultrices sagittis orci a.
             </Typography>
         </Box>
-    )
-}
+    );
+};
 
 export default HomePage;

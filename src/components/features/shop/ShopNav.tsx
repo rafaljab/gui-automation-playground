@@ -1,11 +1,11 @@
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Button } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 
 type PropsType = {
   viewCart: boolean;
-  setViewCart: React.Dispatch<React.SetStateAction<boolean>>;
+  setViewCart: Dispatch<SetStateAction<boolean>>;
 };
 
 const ShopNav = ({ viewCart, setViewCart }: PropsType) => {

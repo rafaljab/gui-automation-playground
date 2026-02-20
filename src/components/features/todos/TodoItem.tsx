@@ -1,10 +1,10 @@
-import { FormControlLabel, Checkbox } from '@mui/material';
-
+import { FormControlLabel, Checkbox } from "@mui/material";
+import { Todo, ToggleTodo } from "../../../types/todos";
 
 type PropsType = {
-    todo: Todo,
-    toggleTodo: ToggleTodo
-}
+    todo: Todo;
+    toggleTodo: ToggleTodo;
+};
 
 export const TodoItem = ({ todo, toggleTodo }: PropsType) => {
     return (
@@ -15,5 +15,5 @@ export const TodoItem = ({ todo, toggleTodo }: PropsType) => {
             label={todo.text}
             data-testid="todo-item"
         />
-    )
-}
+    );
+};

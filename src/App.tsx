@@ -10,11 +10,11 @@ import { CartProvider } from "./context/CartProvider";
 import { ProductsProvider } from "./context/ProductsProvider";
 
 function App() {
+  const storedAuth = localStorage.getItem("authenticated");
   const [authenticated, setAuthenticated] = useState<boolean>(
-    localStorage.getItem("authenticated") == null ||
-      localStorage.getItem("authenticated") === ""
+    storedAuth == null || storedAuth === ""
       ? false
-      : JSON.parse(localStorage.getItem("authenticated") as string),
+      : JSON.parse(storedAuth),
   );
   const [loginAlertOpened, setLoginAlertOpened] = useState<boolean>(false);
   const navigate = useNavigate();
