@@ -1,9 +1,4 @@
-import {
-  createContext,
-  ReactElement,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactElement, useEffect, useState } from "react";
 
 export type ProductType = {
   id: number;

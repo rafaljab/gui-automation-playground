@@ -14,9 +14,7 @@ import { Todo, ToggleTodo, AddTodo } from "@app-types/todos";
 const TodosPage = () => {
   const storedTodos = localStorage.getItem("todos");
   const [todos, setTodos] = useState<Todo[]>(
-    storedTodos == null || storedTodos === ""
-      ? []
-      : JSON.parse(storedTodos),
+    storedTodos == null || storedTodos === "" ? [] : JSON.parse(storedTodos),
   );
   const [newTodo, setNewTodo] = useState<string>("");
 
@@ -35,8 +33,9 @@ const TodosPage = () => {
   };
 
   const addTodo: AddTodo = (newTodo) => {
-    newTodo.trim() !== "" &&
+    if (newTodo.trim() !== "") {
       setTodos([...todos, { id: uuid(), text: newTodo, complete: false }]);
+    }
   };
 
   const handleClearTodos = () => {

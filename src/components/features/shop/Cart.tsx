@@ -70,6 +70,6 @@ const Cart = () => {
       </Box>
     </>
   );
-}
+};
 
 export default Cart;

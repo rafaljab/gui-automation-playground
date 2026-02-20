@@ -1,0 +1,9 @@
+# Build output
+dist/
+build/
+
+# Static files copied as-is
+public/
+
+# Dependencies
+node_modules/

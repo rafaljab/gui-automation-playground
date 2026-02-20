@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import ProductsContext, {
-    UseProductsContextType,
+  UseProductsContextType,
 } from "@context/ProductsProvider";
 
 const useProducts = (): UseProductsContextType => {
-    return useContext(ProductsContext);
+  return useContext(ProductsContext);
 };
 
 export default useProducts;

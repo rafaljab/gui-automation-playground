@@ -3,19 +3,19 @@ import { TodoItem } from "./TodoItem";
 import { Todo, ToggleTodo } from "@app-types/todos";
 
 type PropsType = {
-    todos: Todo[];
-    toggleTodo: ToggleTodo;
+  todos: Todo[];
+  toggleTodo: ToggleTodo;
 };
 
 export const TodoList = ({ todos, toggleTodo }: PropsType) => {
-    if (Array.isArray(todos)) {
-        return (
-            <FormGroup>
-                {todos.map((todo) => (
-                    <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} />
-                ))}
-            </FormGroup>
-        );
-    }
-    return <FormGroup />;
+  if (Array.isArray(todos)) {
+    return (
+      <FormGroup>
+        {todos.map((todo) => (
+          <TodoItem key={todo.id} todo={todo} toggleTodo={toggleTodo} />
+        ))}
+      </FormGroup>
+    );
+  }
+  return <FormGroup />;
 };

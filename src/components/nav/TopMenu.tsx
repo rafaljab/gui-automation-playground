@@ -16,11 +16,7 @@ type Props = {
   setMenuOpened: Dispatch<SetStateAction<boolean>>;
 };
 
-const TopMenu = ({
-  setAuthenticated,
-  menuOpened,
-  setMenuOpened,
-}: Props) => {
+const TopMenu = ({ setAuthenticated, menuOpened, setMenuOpened }: Props) => {
   const toggleMenuOpened = (): void => setMenuOpened(!menuOpened);
 
   return (

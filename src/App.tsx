@@ -12,9 +12,7 @@ import { ProductsProvider } from "@context/ProductsProvider";
 function App() {
   const storedAuth = localStorage.getItem("authenticated");
   const [authenticated, setAuthenticated] = useState<boolean>(
-    storedAuth == null || storedAuth === ""
-      ? false
-      : JSON.parse(storedAuth),
+    storedAuth == null || storedAuth === "" ? false : JSON.parse(storedAuth),
   );
   const [loginAlertOpened, setLoginAlertOpened] = useState<boolean>(false);
   const navigate = useNavigate();
