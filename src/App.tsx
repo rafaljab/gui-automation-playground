@@ -1,13 +1,13 @@
 import { FormEvent, useState, useEffect } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import MainLayout from "./layouts/MainLayout";
-import AuthLayout from "./layouts/AuthLayout";
-import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
-import TodosPage from "./pages/TodosPage";
-import ShopPage from "./pages/ShopPage";
-import { CartProvider } from "./context/CartProvider";
-import { ProductsProvider } from "./context/ProductsProvider";
+import MainLayout from "@layouts/MainLayout";
+import AuthLayout from "@layouts/AuthLayout";
+import LoginPage from "@pages/LoginPage";
+import HomePage from "@pages/HomePage";
+import TodosPage from "@pages/TodosPage";
+import ShopPage from "@pages/ShopPage";
+import { CartProvider } from "@context/CartProvider";
+import { ProductsProvider } from "@context/ProductsProvider";
 
 function App() {
   const storedAuth = localStorage.getItem("authenticated");

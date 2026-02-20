@@ -1,6 +1,6 @@
 import { FormGroup } from "@mui/material";
 import { TodoItem } from "./TodoItem";
-import { Todo, ToggleTodo } from "../../../types/todos";
+import { Todo, ToggleTodo } from "@app-types/todos";
 
 type PropsType = {
     todos: Todo[];

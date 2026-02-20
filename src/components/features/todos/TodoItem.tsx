@@ -1,5 +1,5 @@
 import { FormControlLabel, Checkbox } from "@mui/material";
-import { Todo, ToggleTodo } from "../../../types/todos";
+import { Todo, ToggleTodo } from "@app-types/todos";
 
 type PropsType = {
     todo: Todo;

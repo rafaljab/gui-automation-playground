@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Copyright from "../components/footer/Copyright";
+import Copyright from "@components/footer/Copyright";
 import {
     Container,
     CssBaseline,

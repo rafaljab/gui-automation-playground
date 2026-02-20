@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useCart from "../../../hooks/useCart";
+import useCart from "@hooks/useCart";
 import CartLineItem from "./CartLineItem";
 import { Box, Button, Divider, List, Stack, Typography } from "@mui/material";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";

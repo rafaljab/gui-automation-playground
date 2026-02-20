@@ -7,9 +7,9 @@ import {
   Grid,
 } from "@mui/material";
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { TodoList } from "../components/features/todos/TodoList";
+import { TodoList } from "@components/features/todos/TodoList";
 import uuid from "react-uuid";
-import { Todo, ToggleTodo, AddTodo } from "../types/todos";
+import { Todo, ToggleTodo, AddTodo } from "@app-types/todos";
 
 const TodosPage = () => {
   const storedTodos = localStorage.getItem("todos");

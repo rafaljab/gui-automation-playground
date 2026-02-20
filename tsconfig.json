@@ -1,5 +1,26 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@context/*": [
+        "src/context/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@app-types/*": [
+        "src/types/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ]
+    },
     "target": "ESNext",
     "lib": [
       "DOM",

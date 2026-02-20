@@ -3,7 +3,7 @@ import {
   CartItemType,
   ReducerAction,
   ReducerActionType,
-} from "../../../context/CartProvider";
+} from "@context/CartProvider";
 import {
   Avatar,
   Badge,

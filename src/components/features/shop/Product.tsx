@@ -1,9 +1,9 @@
 import { memo, ReactElement, Dispatch } from "react";
-import { ProductType } from "../../../context/ProductsProvider";
+import { ProductType } from "@context/ProductsProvider";
 import {
   ReducerAction,
   ReducerActionType,
-} from "../../../context/CartProvider";
+} from "@context/CartProvider";
 import {
   Card,
   CardActions,
