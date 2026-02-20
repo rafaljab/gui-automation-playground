@@ -43,14 +43,14 @@ src/
 
 Configured in both `tsconfig.json` and `vite.config.ts`. Avoid deep relative imports — use these instead:
 
-| Alias | Resolves to |
-|---|---|
-| `@context/*` | `src/context/*` |
-| `@hooks/*` | `src/hooks/*` |
+| Alias           | Resolves to        |
+| --------------- | ------------------ |
+| `@context/*`    | `src/context/*`    |
+| `@hooks/*`      | `src/hooks/*`      |
 | `@components/*` | `src/components/*` |
-| `@app-types/*` | `src/types/*` |
-| `@pages/*` | `src/pages/*` |
-| `@layouts/*` | `src/layouts/*` |
+| `@app-types/*`  | `src/types/*`      |
+| `@pages/*`      | `src/pages/*`      |
+| `@layouts/*`    | `src/layouts/*`    |
 
 > **Note:** `@app-types` is used instead of `@types` because `@types` is reserved by TypeScript's declaration file ecosystem.
 
