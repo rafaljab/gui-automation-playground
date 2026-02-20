@@ -9,16 +9,14 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { Dispatch, SetStateAction } from "react";
 
-const TopMenu = ({
-  setAuthenticated,
-  menuOpened,
-  setMenuOpened,
-}: {
+type Props = {
   authenticated: boolean;
   setAuthenticated: Dispatch<SetStateAction<boolean>>;
   menuOpened: boolean;
   setMenuOpened: Dispatch<SetStateAction<boolean>>;
-}) => {
+};
+
+const TopMenu = ({ setAuthenticated, menuOpened, setMenuOpened }: Props) => {
   const toggleMenuOpened = (): void => setMenuOpened(!menuOpened);
 
   return (

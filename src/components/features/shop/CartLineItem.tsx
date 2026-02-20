@@ -1,9 +1,9 @@
-import React, { memo, ReactElement } from "react";
+import { memo, ReactElement, Dispatch } from "react";
 import {
   CartItemType,
   ReducerAction,
   ReducerActionType,
-} from "../../../context/CartProvider";
+} from "@context/CartProvider";
 import {
   Avatar,
   Badge,
@@ -26,7 +26,7 @@ import Delete from "@mui/icons-material/Delete";
 
 type PropsType = {
   item: CartItemType;
-  dispatch: React.Dispatch<ReducerAction>;
+  dispatch: Dispatch<ReducerAction>;
   REDUCER_ACTIONS: ReducerActionType;
 };
 

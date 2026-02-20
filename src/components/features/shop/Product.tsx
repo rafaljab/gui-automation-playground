@@ -1,9 +1,6 @@
-import React, { memo, ReactElement } from "react";
-import { ProductType } from "../../../context/ProductsProvider";
-import {
-  ReducerAction,
-  ReducerActionType,
-} from "../../../context/CartProvider";
+import { memo, ReactElement, Dispatch } from "react";
+import { ProductType } from "@context/ProductsProvider";
+import { ReducerAction, ReducerActionType } from "@context/CartProvider";
 import {
   Card,
   CardActions,
@@ -18,7 +15,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 type PropsType = {
   product: ProductType;
-  dispatch: React.Dispatch<ReducerAction>;
+  dispatch: Dispatch<ReducerAction>;
   REDUCER_ACTIONS: ReducerActionType;
   inCart: boolean;
 };

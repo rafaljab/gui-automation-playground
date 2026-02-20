@@ -7,15 +7,14 @@ import {
   Grid,
 } from "@mui/material";
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
-import { TodoList } from "../components/features/todos/TodoList";
+import { TodoList } from "@components/features/todos/TodoList";
 import uuid from "react-uuid";
+import { Todo, ToggleTodo, AddTodo } from "@app-types/todos";
 
 const TodosPage = () => {
+  const storedTodos = localStorage.getItem("todos");
   const [todos, setTodos] = useState<Todo[]>(
-    localStorage.getItem("todos") == null ||
-      localStorage.getItem("todos") === ""
-      ? []
-      : JSON.parse(localStorage.getItem("todos") as string),
+    storedTodos == null || storedTodos === "" ? [] : JSON.parse(storedTodos),
   );
   const [newTodo, setNewTodo] = useState<string>("");
 
@@ -34,8 +33,9 @@ const TodosPage = () => {
   };
 
   const addTodo: AddTodo = (newTodo) => {
-    newTodo.trim() !== "" &&
+    if (newTodo.trim() !== "") {
       setTodos([...todos, { id: uuid(), text: newTodo, complete: false }]);
+    }
   };
 
   const handleClearTodos = () => {

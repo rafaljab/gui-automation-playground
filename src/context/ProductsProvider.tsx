@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactElement,
-  useEffect,
-  useState,
-  useRef,
-} from "react";
+import { createContext, ReactElement, useEffect, useState } from "react";
 
 export type ProductType = {
   id: number;
@@ -27,28 +21,28 @@ type ChildrenType = { children?: ReactElement | ReactElement[] };
 export const ProductsProvider = ({ children }: ChildrenType): ReactElement => {
   const [products, setProducts] = useState<ProductType[]>(initState);
 
-  const effectRun = useRef(true);
-
   useEffect(() => {
-    const fetchProducts = async (): Promise<ProductType[]> => {
-      return await fetch(
-        "https://apiautomationplayground.pythonanywhere.com/api/shop/products/",
-      )
-        .then((res) => res.json())
-        .then((res) => {
-          return res;
-        })
-        .catch((err) => {
-          if (err instanceof Error) console.log(err.message);
-        });
+    const controller = new AbortController();
+
+    const fetchProducts = async (): Promise<void> => {
+      try {
+        const res = await fetch(
+          "https://apiautomationplayground.pythonanywhere.com/api/shop/products/",
+          { signal: controller.signal },
+        );
+        const data: ProductType[] = await res.json();
+        setProducts(data);
+      } catch (err) {
+        if (err instanceof Error && err.name !== "AbortError") {
+          console.log(err.message);
+        }
+      }
     };
 
-    if (effectRun.current) {
-      fetchProducts().then((products) => setProducts(products));
-    }
+    fetchProducts();
 
     return () => {
-      effectRun.current = false;
+      controller.abort();
     };
   }, []);
 
