@@ -5,29 +5,17 @@ import { Outlet } from "react-router-dom";
 import { Dispatch, SetStateAction } from "react";
 
 type Props = {
-  authenticated: boolean;
-  setAuthenticated: Dispatch<SetStateAction<boolean>>;
   menuOpened: boolean;
   setMenuOpened: Dispatch<SetStateAction<boolean>>;
 };
 
-const MainLayout = ({
-  authenticated,
-  setAuthenticated,
-  menuOpened,
-  setMenuOpened,
-}: Props) => {
+const MainLayout = ({ menuOpened, setMenuOpened }: Props) => {
   const drawerWidth: number = 240;
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <TopMenu
-        authenticated={authenticated}
-        setAuthenticated={setAuthenticated}
-        menuOpened={menuOpened}
-        setMenuOpened={setMenuOpened}
-      />
+      <TopMenu menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
       <LeftMenu
         drawerWidth={drawerWidth}
         menuOpened={menuOpened}

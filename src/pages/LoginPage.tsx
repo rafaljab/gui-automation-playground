@@ -12,19 +12,63 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { Dispatch, FormEventHandler, SetStateAction } from "react";
+import { FormEvent, useState } from "react";
+import { useAuth } from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
-type Props = {
-  handleLoginSubmit: FormEventHandler<HTMLFormElement>;
-  loginAlertOpened: boolean;
-  setLoginAlertOpened: Dispatch<SetStateAction<boolean>>;
-};
+const LoginPage = () => {
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [errorAlertOpend, setErrorAlertOpened] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("Incorrect credentials!");
+  const { login, register } = useAuth();
+  const navigate = useNavigate();
 
-const LoginPage = ({
-  handleLoginSubmit,
-  loginAlertOpened,
-  setLoginAlertOpened,
-}: Props) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const username = data.get("username") as string;
+    const password = data.get("password") as string;
+
+    setErrorAlertOpened(false);
+
+    if (isRegistering) {
+      const passwordConfirm = data.get("password_confirm") as string;
+      if (password !== passwordConfirm) {
+        setErrorMessage("Passwords do not match");
+        setErrorAlertOpened(true);
+        return;
+      }
+      try {
+        const res = await register({ username, password });
+        if (res.ok) {
+          navigate("/");
+        } else {
+          const errData = await res.json();
+          setErrorMessage(
+            "Registration failed: " + JSON.stringify(errData.errors || errData),
+          );
+          setErrorAlertOpened(true);
+        }
+      } catch (err: any) {
+        setErrorMessage(err.message || "Registration failed");
+        setErrorAlertOpened(true);
+      }
+    } else {
+      try {
+        const res = await login({ username, password });
+        if (res.ok) {
+          navigate("/");
+        } else {
+          setErrorMessage("Incorrect credentials!");
+          setErrorAlertOpened(true);
+        }
+      } catch (err: any) {
+        setErrorMessage(err.message || "Login failed");
+        setErrorAlertOpened(true);
+      }
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -38,9 +82,9 @@ const LoginPage = ({
         <LockOutlinedIcon />
       </Avatar>
       <Typography component="h1" variant="h5" gutterBottom>
-        Log in
+        {isRegistering ? "Sign Up" : "Log in"}
       </Typography>
-      <Collapse sx={{ width: "100%" }} in={loginAlertOpened}>
+      <Collapse sx={{ width: "100%" }} in={errorAlertOpend}>
         <Alert
           severity="warning"
           action={
@@ -49,7 +93,7 @@ const LoginPage = ({
               color="inherit"
               size="small"
               onClick={() => {
-                setLoginAlertOpened(false);
+                setErrorAlertOpened(false);
               }}
             >
               <CloseIcon fontSize="inherit" />
@@ -57,54 +101,79 @@ const LoginPage = ({
           }
           sx={{ mb: 1, mt: 1 }}
         >
-          Incorrect credentials!
+          {errorMessage}
         </Alert>
       </Collapse>
       <Box
         component="form"
-        onSubmit={handleLoginSubmit}
+        onSubmit={handleSubmit}
         noValidate
-        sx={{ mt: 1 }}
+        sx={{ mt: 1, width: "100%" }}
       >
         <TextField
           margin="normal"
           required
           fullWidth
-          id="email"
-          label="Email Address"
-          name="email"
-          autoComplete="email"
+          key="username"
+          id="username"
+          label="Username"
+          name="username"
+          autoComplete="username"
           autoFocus
         />
         <TextField
           margin="normal"
           required
           fullWidth
+          key="password"
           name="password"
           label="Password"
           type="password"
           id="password"
-          autoComplete="current-password"
+          autoComplete={isRegistering ? "new-password" : "current-password"}
         />
-        <Typography variant="body2">Email: admin@example.com</Typography>
-        <Typography variant="body2">Password: admin123</Typography>
+        {isRegistering && (
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            key="password_confirm"
+            name="password_confirm"
+            label="Confirm Password"
+            type="password"
+            id="password_confirm"
+            autoComplete="new-password"
+          />
+        )}
         <Button
           type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >
-          Log In
+          {isRegistering ? "Sign Up" : "Log In"}
         </Button>
         <Grid container>
           <Grid size="grow">
-            <Link href="#" variant="body2">
-              Forgot password?
-            </Link>
+            {!isRegistering && (
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            )}
           </Grid>
           <Grid size="auto">
-            <Link href="#" variant="body2">
-              {"Don't have an account? Sign Up"}
+            <Link
+              component="button"
+              type="button"
+              variant="body2"
+              onClick={() => {
+                setIsRegistering(!isRegistering);
+                setErrorAlertOpened(false);
+              }}
+            >
+              {isRegistering
+                ? "Already have an account? Log In"
+                : "Don't have an account? Sign Up"}
             </Link>
           </Grid>
         </Grid>

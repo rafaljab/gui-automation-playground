@@ -8,16 +8,16 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Dispatch, SetStateAction } from "react";
+import { useAuth } from "@context/AuthProvider.tsx";
 
 type Props = {
-  authenticated: boolean;
-  setAuthenticated: Dispatch<SetStateAction<boolean>>;
   menuOpened: boolean;
   setMenuOpened: Dispatch<SetStateAction<boolean>>;
 };
 
-const TopMenu = ({ setAuthenticated, menuOpened, setMenuOpened }: Props) => {
+const TopMenu = ({ menuOpened, setMenuOpened }: Props) => {
   const toggleMenuOpened = (): void => setMenuOpened(!menuOpened);
+  const { logout, deleteAccount } = useAuth();
 
   return (
     <AppBar
@@ -39,7 +39,10 @@ const TopMenu = ({ setAuthenticated, menuOpened, setMenuOpened }: Props) => {
         </Typography>
 
         <Box>
-          <Button onClick={() => setAuthenticated(false)} color="inherit">
+          <Button onClick={deleteAccount} color="error" sx={{ mr: 2 }}>
+            Delete Account
+          </Button>
+          <Button onClick={logout} color="inherit">
             Logout
           </Button>
         </Box>

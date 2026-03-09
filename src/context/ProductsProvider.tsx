@@ -1,5 +1,7 @@
 import { createContext, ReactElement, useEffect, useState } from "react";
 
+import { apiClient } from "../api/client";
+
 export type ProductType = {
   id: number;
   title: string;
@@ -26,12 +28,13 @@ export const ProductsProvider = ({ children }: ChildrenType): ReactElement => {
 
     const fetchProducts = async (): Promise<void> => {
       try {
-        const res = await fetch(
-          "https://apiautomationplayground.pythonanywhere.com/api/shop/products/",
-          { signal: controller.signal },
-        );
-        const data: ProductType[] = await res.json();
-        setProducts(data);
+        const res = await apiClient("/api/shop/products/", {
+          signal: controller.signal,
+        });
+        if (res.ok) {
+          const data: ProductType[] = await res.json();
+          setProducts(data);
+        }
       } catch (err) {
         if (err instanceof Error && err.name !== "AbortError") {
           console.log(err.message);
