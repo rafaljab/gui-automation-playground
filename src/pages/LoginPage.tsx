@@ -44,7 +44,9 @@ const LoginPage = () => {
           navigate("/");
         } else {
           const errData = await res.json();
-          setErrorMessage("Registration failed: " + JSON.stringify(errData.errors || errData));
+          setErrorMessage(
+            "Registration failed: " + JSON.stringify(errData.errors || errData),
+          );
           setErrorAlertOpened(true);
         }
       } catch (err: any) {

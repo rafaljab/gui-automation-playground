@@ -23,19 +23,20 @@ const AppRoutes = () => {
       <Route path="/">
         <Route
           element={
-            <MainLayout
-              menuOpened={menuOpened}
-              setMenuOpened={setMenuOpened}
-            />
+            <MainLayout menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
           }
         >
           <Route
             index
-            element={!authenticated ? <Navigate replace to="/login" /> : <HomePage />}
+            element={
+              !authenticated ? <Navigate replace to="/login" /> : <HomePage />
+            }
           />
           <Route
             path="todos"
-            element={!authenticated ? <Navigate replace to="/login" /> : <TodosPage />}
+            element={
+              !authenticated ? <Navigate replace to="/login" /> : <TodosPage />
+            }
           />
           <Route
             path="shop"

@@ -28,7 +28,9 @@ export const ProductsProvider = ({ children }: ChildrenType): ReactElement => {
 
     const fetchProducts = async (): Promise<void> => {
       try {
-        const res = await apiClient("/api/shop/products/", { signal: controller.signal });
+        const res = await apiClient("/api/shop/products/", {
+          signal: controller.signal,
+        });
         if (res.ok) {
           const data: ProductType[] = await res.json();
           setProducts(data);

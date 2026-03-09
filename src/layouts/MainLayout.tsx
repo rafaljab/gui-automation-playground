@@ -9,19 +9,13 @@ type Props = {
   setMenuOpened: Dispatch<SetStateAction<boolean>>;
 };
 
-const MainLayout = ({
-  menuOpened,
-  setMenuOpened,
-}: Props) => {
+const MainLayout = ({ menuOpened, setMenuOpened }: Props) => {
   const drawerWidth: number = 240;
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <TopMenu
-        menuOpened={menuOpened}
-        setMenuOpened={setMenuOpened}
-      />
+      <TopMenu menuOpened={menuOpened} setMenuOpened={setMenuOpened} />
       <LeftMenu
         drawerWidth={drawerWidth}
         menuOpened={menuOpened}
