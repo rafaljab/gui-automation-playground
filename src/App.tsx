@@ -1,5 +1,5 @@
-import { FormEvent, useState, useEffect } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import MainLayout from "@layouts/MainLayout";
 import AuthLayout from "@layouts/AuthLayout";
 import LoginPage from "@pages/LoginPage";
@@ -8,36 +8,15 @@ import TodosPage from "@pages/TodosPage";
 import ShopPage from "@pages/ShopPage";
 import { CartProvider } from "@context/CartProvider";
 import { ProductsProvider } from "@context/ProductsProvider";
+import { AuthProvider, useAuth } from "@context/AuthProvider";
 
-function App() {
-  const storedAuth = localStorage.getItem("authenticated");
-  const [authenticated, setAuthenticated] = useState<boolean>(
-    storedAuth == null || storedAuth === "" ? false : JSON.parse(storedAuth),
-  );
-  const [loginAlertOpened, setLoginAlertOpened] = useState<boolean>(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    localStorage.setItem("authenticated", JSON.stringify(authenticated));
-  }, [authenticated]);
-
-  const handleLoginSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    if (
-      data.get("email") === "admin@example.com" &&
-      data.get("password") === "admin123"
-    ) {
-      setAuthenticated(true);
-      setLoginAlertOpened(false);
-      navigate("/");
-    } else {
-      console.log("Incorrect credentials.");
-      setLoginAlertOpened(true);
-    }
-  };
-
+const AppRoutes = () => {
+  const { authenticated, loading } = useAuth();
   const [menuOpened, setMenuOpened] = useState<boolean>(false);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Routes>
@@ -45,8 +24,6 @@ function App() {
         <Route
           element={
             <MainLayout
-              authenticated={authenticated}
-              setAuthenticated={setAuthenticated}
               menuOpened={menuOpened}
               setMenuOpened={setMenuOpened}
             />
@@ -54,15 +31,11 @@ function App() {
         >
           <Route
             index
-            element={
-              !authenticated ? <Navigate replace to="/login" /> : <HomePage />
-            }
+            element={!authenticated ? <Navigate replace to="/login" /> : <HomePage />}
           />
           <Route
             path="todos"
-            element={
-              !authenticated ? <Navigate replace to="/login" /> : <TodosPage />
-            }
+            element={!authenticated ? <Navigate replace to="/login" /> : <TodosPage />}
           />
           <Route
             path="shop"
@@ -83,15 +56,7 @@ function App() {
           <Route
             path="login"
             element={
-              authenticated ? (
-                <Navigate replace to="/" />
-              ) : (
-                <LoginPage
-                  handleLoginSubmit={handleLoginSubmit}
-                  loginAlertOpened={loginAlertOpened}
-                  setLoginAlertOpened={setLoginAlertOpened}
-                />
-              )
+              authenticated ? <Navigate replace to="/" /> : <LoginPage />
             }
           />
         </Route>
@@ -106,6 +71,14 @@ function App() {
         }
       />
     </Routes>
+  );
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
   );
 }
 

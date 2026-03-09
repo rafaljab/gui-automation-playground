@@ -4,7 +4,7 @@ That is a simple React application for playing with a test automation framework.
 
 **Disclaimer:** I built this app to play around with automated tests.
 I have limited knowledge of React, so keep in mind that this project probably isn't the best example of good coding practices, etc.
-This application is also highly insecure - the simplified authentication feature is made only for demo use.
+The simplified authentication feature is made only for demo use.
 
 ## Live Demo
 
