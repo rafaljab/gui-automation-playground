@@ -1,17 +1,7 @@
+let cachedCsrfToken: string | null = null;
+
 export const getCSRFToken = () => {
-  const name = "csrftoken";
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
+  return cachedCsrfToken;
 };
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
@@ -47,6 +37,11 @@ export const apiClient = async (
     headers,
     credentials: "include",
   });
+
+  const csrfFromHeader = response.headers.get("x-csrftoken");
+  if (csrfFromHeader) {
+    cachedCsrfToken = csrfFromHeader;
+  }
 
   return response;
 };
