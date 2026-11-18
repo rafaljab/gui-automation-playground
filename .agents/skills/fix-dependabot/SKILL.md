@@ -15,18 +15,24 @@ This skill equips you with a strict, automated workflow to discover and fix pack
 ## How to use it
 
 ### Step 1: Fetch Alerts
+
 Call the MCP tool `check_dependabot` from the `mcp-dev-toolbox` server.
+
 - **Parameter `repo_path`:** Dynamically determine the repository path in 'owner/repo' format by inspecting the local `.git/config` file. Do not guess or hardcode the repository name.
 
 ### Step 2: Ecosystem Detection & Context Gathering
+
 Before applying any fixes, inspect the workspace root directory to determine the package manager and ecosystem:
+
 - **Ecosystem A (Python/UV):** Look for `pyproject.toml`, `uv.lock`, or `requirements.txt`.
 - **Ecosystem B (Node.js/NPM):** Look for `package.json` or `package-lock.json`.
 
 ### Step 3: Implement and Lock the Fix
+
 Based on the detected ecosystem, upgrade the vulnerable package to its respective `patched_version`:
 
 #### IF PYTHON / UV ECOSYSTEM:
+
 1. **Modify Manifest:** Update the exact package version in `pyproject.toml` or `requirements.txt` to the secure `patched_version`.
 2. **Lockfile & Sync:** Run the modern `uv` commands to update the lockfile and synchronize the local virtual environment:
    ```bash
@@ -35,16 +41,18 @@ Based on the detected ecosystem, upgrade the vulnerable package to its respectiv
    ```
 
 #### IF NODE.JS / NPM ECOSYSTEM:
+
 1. **Automated Fix Attempt:** Try upgrading the specific package cleanly via NPM first to let it resolve sub-dependencies automatically:
    ```bash
    npm install <package_name>@<patched_version>
    ```
 2. **Fallback:** If `package.json` requires manual adjustment, modify the version string directly in `package.json` and run:
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 ### Step 4: Local Verification (Run Automation Tests)
+
 Do NOT re-fetch alerts from GitHub after applying the fix (since changes are only local and haven't been pushed or merged yet). Instead, verify the upgrade by executing the local test suite:
 
 - **IF PYTHON / UV ECOSYSTEM:**
@@ -59,6 +67,7 @@ Do NOT re-fetch alerts from GitHub after applying the fix (since changes are onl
   ```
 
 ## Output Format to the User
+
 Present your final summary in a clean, scannable table layout:
 | # | Package | Severity | Current Range | Patched Version | Status |
 |---|---|---|---|---|---|
