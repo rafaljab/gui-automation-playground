@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - main
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,11 +15,13 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event_name != 'workflow_dispatch' || github.actor == github.repository_owner
     steps:
       - name: Checkout
         uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v6
@@ -33,11 +36,18 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          npm version patch -m "chore: bump version to %s [skip ci]"
-          git push
-          git push --tags
-          NEW_TAG=$(git describe --tags --abbrev=0)
-          gh release create "$NEW_TAG" --generate-notes
+          git fetch origin ${{ github.ref_name }}
+          LATEST_MSG=$(git log -1 --format=%s origin/${{ github.ref_name }})
+          if [[ "$LATEST_MSG" == *"chore: bump version"* ]]; then
+            echo "Latest commit on origin/${{ github.ref_name }} is already a version bump, skipping."
+            git checkout origin/${{ github.ref_name }}
+          else
+            npm version patch -m "chore: bump version to %s [skip ci]"
+            git push origin HEAD:${{ github.ref_name }}
+            git push --tags
+            NEW_TAG=$(git describe --tags --abbrev=0)
+            gh release create "$NEW_TAG" --generate-notes || true
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
